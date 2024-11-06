@@ -1,9 +1,18 @@
-import example.pepita
+import viajes.*
 
 describe "group of tests for pepita" {
-
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
+  const excursionCiudad = new ExcursionCiudad(atracciones = 4,idiomas = ["español"])
+  const excursionTropical = new ExcursionTropical(atracciones = 4,idiomas = ["español"])
+  const gimnasia = new Gimnasia(idiomas = "frances")
+  test "una excursión a ciudad normal (no tropical) en la que se visitan 4 atracciones, lleva 2 días, no implica esfuerzo, y no sirve para broncearse." {
+    assert.equals(2,excursionCiudad.cuantosDiasLleva())
+    assert.notThat(excursionCiudad.implicaEsfuerzo())
+    assert.notThat(excursionCiudad.sirveParaBroncearse())
+  }
+  test "una excursión a ciudad tropical en la que se visitan 4 atracciones, lleva 3 días, no implica esfuerzo, y sí sirve para broncearse." {
+    assert.equals(3,excursionTropical.cuantosDiasLleva())
+    assert.notThat(excursionTropical.implicaEsfuerzo())
+    assert.that(excursionTropical.sirveParaBroncearse())
   }
 
 }
